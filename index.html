@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abiya ❤️ Jomal | Engagement and Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Cinzel', serif;
+background:black;
+overflow-x:hidden;
+}
+
+/* UPDATED MAIN HERO BACKGROUND */
+
+.hero{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
+url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693093/WhatsApp_Image_2026-02-21_at_8.38.32_PM_krojbi.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+z-index:0;
+}
+
+/* GOLD PARTICLES */
+
+.particle{
+position:fixed;
+background:gold;
+border-radius:50%;
+opacity:.85;
+animation:float linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+}
+
+/* OPEN BUTTON */
+
+.open-btn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:16px 32px;
+font-size:clamp(16px,4vw,22px);
+border:none;
+background:linear-gradient(145deg,#d4af37,#fff2b0);
+color:black;
+cursor:pointer;
+border-radius:50px;
+letter-spacing:3px;
+font-weight:bold;
+box-shadow:0 10px 40px rgba(0,0,0,.6);
+transition:.4s;
+width:80%;
+max-width:300px;
+}
+
+.open-btn:hover{
+transform:translate(-50%,-50%) scale(1.05);
+}
+
+/* SCROLL (PARCHMENT EFFECT) */
+
+.scroll{
+margin-top:120vh;
+width:90%;
+max-width:520px;
+background:
+linear-gradient(rgba(248,241,212,0.85),rgba(248,241,212,0.85)),
+url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693161/WhatsApp_Image_2026-02-21_at_7.27.22_PM_1_extid5.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+color:#222;
+padding:40px 25px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 30px 90px rgba(0,0,0,.8);
+margin-left:auto;
+margin-right:auto;
+opacity:0;
+transform:translateY(100px);
+transition:1s;
+position:relative;
+}
+
+.show-scroll{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Scroll rods */
+
+.scroll:before,
+.scroll:after{
+content:'';
+position:absolute;
+width:112%;
+height:20px;
+background:linear-gradient(to right,#caa44a,#8a6a2b,#caa44a);
+left:-6%;
+border-radius:8px;
+}
+
+.scroll:before{ top:-18px; }
+.scroll:after{ bottom:-18px; }
+
+/* NAMES */
+
+.names{
+font-family:'Cormorant Garamond', serif;
+font-size:clamp(36px,8vw,72px);
+font-style:italic;
+font-weight:700;
+letter-spacing:2px;
+color:#b8962e;
+margin:20px 0;
+line-height:1.2;
+}
+
+/* DETAILS */
+
+.details{
+line-height:1.9;
+font-size:15px;
+}
+
+/* COUNTDOWN — LUXURY FLIP CLOCK */
+
+.countdown{
+margin-top:25px;
+padding:20px;
+border:1px solid #d4af37;
+border-radius:12px;
+background:#fff9e6;
+}
+
+.flip-clock{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:20px;
+gap:8px;
+flex-wrap:nowrap;
+}
+
+.flip-box{
+flex:1;
+background:linear-gradient(145deg,#1a1a1a,#000000);
+border-radius:10px;
+padding:15px 5px;
+box-shadow:
+0 6px 15px rgba(0,0,0,.6),
+inset 0 2px 4px rgba(255,255,255,.05);
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.flip-box span{
+display:block;
+font-size:clamp(20px,5vw,32px);
+font-weight:bold;
+color:#d4af37;
+letter-spacing:2px;
+}
+
+.flip-box small{
+font-size:clamp(9px,2.5vw,12px);
+color:#ccc;
+letter-spacing:1px;
+}
+
+.flip-box::after{
+content:'';
+position:absolute;
+left:0;
+top:50%;
+width:100%;
+height:1px;
+background:rgba(255,255,255,0.1);
+}
+
+/* EVENTS */
+
+.event{
+margin-top:25px;
+padding:18px;
+border:1px solid #d4af37;
+border-radius:12x;
+background:#fff9e6;
+}
+
+.btn{
+margin-top:15px;
+padding:12px 26px;
+border:none;
+background:#b8962e;
+color:white;
+cursor:pointer;
+border-radius:30px;
+font-weight:bold;
+width:100%;
+}
+
+/* MUSIC BUTTON */
+
+.music{
+position:fixed;
+bottom:15px;
+right:15px;
+background:gold;
+border:none;
+padding:12px;
+border-radius:50%;
+cursor:pointer;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero"></div>
+
+<button class="open-btn" onclick="openScroll()">
+Open Invitation
+</button>
+
+<div class="scroll" id="scroll">
+
+<h3>You Are Invited</h3>
+
+<div class="names">
+Jomal Mathew <br> & <br> Abiya Roy
+</div>
+
+<div class="details">
+Together with their families,<br>
+invite you to celebrate their joyous occasions.
+</div>
+
+<!-- LUXURY COUNTDOWN -->
+
+<div class="countdown">
+<h3>⏳ Wedding Countdown</h3>
+<div class="flip-clock">
+<div class="flip-box"><span id="days">00</span><small>Days</small></div>
+<div class="flip-box"><span id="hours">00</span><small>Hours</small></div>
+<div class="flip-box"><span id="minutes">00</span><small>Minutes</small></div>
+<div class="flip-box"><span id="seconds">00</span><small>Seconds</small></div>
+</div>
+</div>
+
+<!-- ENGAGEMENT -->
+
+<div class="event">
+<h3>💍 Engagement</h3>
+<strong>4th July 2026</strong><br>
+<span style="display:block;margin-top:8px;font-weight:bold;color:#b8962e;">
+🕊 11:30 AM
+</span>
+<span style="display:block;margin-top:6px;">
+📍 St. Joseph's Forane Pilgrim Church, Panathady
+</span>
+<button class="btn"
+onclick="window.open('https://maps.app.goo.gl/JERJCMjhzShqsAid9','_blank')">
+View Location
+</button>
+</div>
+
+<!-- WEDDING -->
+
+<div class="event">
+<h3>👑 Wedding</h3>
+<strong>11th July 2026</strong><br>
+<span style="display:block;margin-top:8px;font-weight:bold;color:#b8962e;">
+⛪ 11:00 AM
+</span>
+<span style="display:block;margin-top:6px;">
+📍 Little Flower Church, Kuttaparamba
+</span>
+<button class="btn"
+onclick="window.open('https://maps.app.goo.gl/AnFbi2aHdYn2uy8G8','_blank')">
+View Location
+</button>
+</div>
+
+</div>
+
+<audio id="music" autoplay loop>
+<source src="https://res.cloudinary.com/drgmm8ig7/video/upload/v1771692901/WhatsApp_Audio_2026-02-21_at_9.21.50_PM_ko8gpl.mp3" type="audio/mp4">
+</audio>
+
+<button class="music" onclick="toggleMusic()">🎵</button>
+
+<script>
+
+/* PARTICLES */
+for(let i=0;i<50;i++){
+let p=document.createElement("div");
+p.className="particle";
+let size=Math.random()*7+2;
+p.style.width=size+"px";
+p.style.height=size+"px";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*10)+"s";
+document.body.appendChild(p);
+}
+
+/* FLIP COUNTDOWN */
+const weddingDate = new Date("July 11, 2026 11:00:00").getTime();
+
+function updateCountdown(){
+
+const now = new Date().getTime();
+const distance = weddingDate - now;
+
+const days = Math.floor(distance / (1000*60*60*24));
+const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+animateFlip("days", days);
+animateFlip("hours", hours);
+animateFlip("minutes", minutes);
+animateFlip("seconds", seconds);
+}
+
+function animateFlip(id, value){
+const el = document.getElementById(id);
+const newValue = String(value).padStart(2,'0');
+
+if(el.innerText !== newValue){
+el.style.transform = "rotateX(90deg)";
+setTimeout(()=>{
+el.innerText = newValue;
+el.style.transform = "rotateX(0deg)";
+},150);
+}
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* OPEN SCROLL */
+function openScroll(){
+document.getElementById("scroll").classList.add("show-scroll");
+window.scrollTo({ top:window.innerHeight, behavior:'smooth' });
+document.getElementById("music").play();
+}
+
+/* TOGGLE MUSIC */
+function toggleMusic(){
+let m=document.getElementById("music");
+if(m.paused) m.play();
+else m.pause();
+}
+
+</script>
+
+</body>
+</html>
