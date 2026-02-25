@@ -2,384 +2,605 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Abiya ❤️ Jomal | Engagement and Wedding Invitation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body{
-font-family:'Cinzel', serif;
-background:black;
-overflow-x:hidden;
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dark: #8a6a2b;
+  --cream: rgb(251, 246, 241);
+  --text-dark: #2a1f0e;
 }
 
-/* UPDATED MAIN HERO BACKGROUND */
+html { scroll-behavior: smooth; }
 
-.hero{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
-url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693093/WhatsApp_Image_2026-02-21_at_8.38.32_PM_krojbi.jpg');
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-z-index:0;
+/* Hero image lives on a fixed pseudo-element behind everything */
+body {
+  font-family: 'Cinzel', serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
 }
 
-/* GOLD PARTICLES */
-
-.particle{
-position:fixed;
-background:gold;
-border-radius:50%;
-opacity:.85;
-animation:float linear infinite;
+/* Fixed full-page background — always visible */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693093/WhatsApp_Image_2026-02-21_at_8.38.32_PM_krojbi.jpg')
+    center center / cover no-repeat;
+  z-index: -2;
 }
 
-@keyframes float{
-from{transform:translateY(100vh);}
-to{transform:translateY(-10vh);}
+/* Dark overlay on top of bg — always visible */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.48), rgba(0,0,0,0.65));
+  z-index: -1;
 }
 
-/* OPEN BUTTON */
-
-.open-btn{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:16px 32px;
-font-size:clamp(16px,4vw,22px);
-border:none;
-background:linear-gradient(145deg,#d4af37,#fff2b0);
-color:black;
-cursor:pointer;
-border-radius:50px;
-letter-spacing:3px;
-font-weight:bold;
-box-shadow:0 10px 40px rgba(0,0,0,.6);
-transition:.4s;
-width:80%;
-max-width:300px;
+/* ─── LANDING ─── */
+#landing {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.open-btn:hover{
-transform:translate(-50%,-50%) scale(1.05);
+.landing-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
 }
 
-/* SCROLL (PARCHMENT EFFECT) */
-
-.scroll{
-margin-top:120vh;
-width:90%;
-max-width:520px;
-background:
-linear-gradient(rgba(248,241,212,0.85),rgba(248,241,212,0.85)),
-url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693161/WhatsApp_Image_2026-02-21_at_7.27.22_PM_1_extid5.jpg');
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-color:#222;
-padding:40px 25px;
-text-align:center;
-border-radius:10px;
-box-shadow:0 30px 90px rgba(0,0,0,.8);
-margin-left:auto;
-margin-right:auto;
-opacity:0;
-transform:translateY(100px);
-transition:1s;
-position:relative;
+.landing-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(42px, 12vw, 82px);
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 
-.show-scroll{
-opacity:1;
-transform:translateY(0);
+.landing-amp {
+  display: block;
+  font-size: clamp(28px, 7vw, 50px);
+  color: var(--gold-light);
+  margin: 4px 0;
+}
+
+.landing-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+  margin: 20px auto;
+}
+
+.landing-date {
+  font-size: clamp(10px, 2.8vw, 13px);
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+}
+
+.open-btn {
+  display: inline-block;
+  padding: 16px 0;
+  width: 75%;
+  max-width: 280px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(12px, 3.5vw, 15px);
+  letter-spacing: 3px;
+  color: #1a1000;
+  background: linear-gradient(135deg, #e8c96a 0%, #c9a84c 40%, #f0d878 70%, #c9a84c 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,220,100,0.3);
+  transition: transform 0.3s ease;
+  -webkit-appearance: none;
+}
+.open-btn:active { transform: scale(0.97); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.scroll-hint.visible { opacity: 1; }
+.scroll-hint span { font-size: 9px; letter-spacing: 4px; color: rgba(255,255,255,0.45); }
+.scroll-arrow {
+  width: 18px; height: 18px;
+  border-right: 1px solid rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  transform: rotate(45deg);
+  animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50%      { transform: rotate(45deg) translateY(5px); }
+}
+
+/* ─── PARTICLES ─── */
+.particle {
+  position: fixed;
+  background: radial-gradient(circle, #ffe066, #c9a84c);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+  z-index: 10;
+  opacity: 0;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(105vh) scale(0); opacity: 0; }
+  10%  { opacity: 0.7; transform: translateY(90vh) scale(1); }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-10vh) scale(0.4); opacity: 0; }
+}
+
+/* ─── INVITATION SECTION — transparent so bg shows through ─── */
+#invitation {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 16px 80px;
+  background: transparent;
+}
+
+/* Parchment card */
+.parchment {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.parchment.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.parchment-inner {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(201,168,76,0.25);
+}
+
+.parchment-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1772037742/WhatsApp_Image_2026-02-25_at_10.11.21_PM_wwspts.jpg') center center / cover no-repeat;
+  z-index: 0;
+}
+
+.parchment-content {
+  position: relative;
+  z-index: 1;
+  padding: 44px 22px 50px;
+  text-align: center;
 }
 
 /* Scroll rods */
+.rod {
+  position: absolute;
+  left: -4%;
+  width: 108%;
+  height: 22px;
+  background: linear-gradient(to right, #8a6a2b, #e8c96a, #c9a84c, #f0d878, #c9a84c, #8a6a2b);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+  z-index: 5;
+}
+.rod-top    { top: -11px; }
+.rod-bottom { bottom: -11px; }
 
-.scroll:before,
-.scroll:after{
-content:'';
-position:absolute;
-width:112%;
-height:20px;
-background:linear-gradient(to right,#caa44a,#8a6a2b,#caa44a);
-left:-6%;
-border-radius:8px;
+/* ─── TYPOGRAPHY ─── */
+.pdivider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 12px auto;
 }
 
-.scroll:before{ top:-18px; }
-.scroll:after{ bottom:-18px; }
-
-/* NAMES */
-
-.names{
-font-family:'Cormorant Garamond', serif;
-font-size:clamp(36px,8vw,72px);
-font-style:italic;
-font-weight:700;
-letter-spacing:2px;
-color:#b8962e;
-margin:20px 0;
-line-height:1.2;
+.couple-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(36px, 9.5vw, 62px);
+  color: var(--gold-dark);
+  line-height: 1.15;
+  margin: 6px 0;
+  text-shadow: 0 2px 6px rgba(138,106,43,0.12);
 }
 
-/* DETAILS */
-
-.details{
-line-height:1.9;
-font-size:15px;
+.couple-amp {
+  display: block;
+  font-size: clamp(22px, 6vw, 38px);
+  color: var(--gold);
+  margin: 2px 0;
 }
 
-/* COUNTDOWN — LUXURY FLIP CLOCK */
-
-.countdown{
-margin-top:25px;
-padding:20px;
-border:1px solid #d4af37;
-border-radius:12px;
-background:#fff9e6;
+.tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(13px, 3.5vw, 16px);
+  color: #3d2c12;
+  line-height: 1.85;
+  margin: 10px 0 18px;
 }
 
-.flip-clock{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:20px;
-gap:8px;
-flex-wrap:nowrap;
+/* ─── COUNTDOWN ─── */
+.countdown-wrap {
+  margin: 18px 0;
+  padding: 18px 12px;
+  border: 1px solid rgba(201,168,76,0.45);
+  border-radius: 12px;
+  background: rgba(255, 252, 238, 0.65);
+  backdrop-filter: blur(6px);
 }
 
-.flip-box{
-flex:1;
-background:linear-gradient(145deg,#1a1a1a,#000000);
-border-radius:10px;
-padding:15px 5px;
-box-shadow:
-0 6px 15px rgba(0,0,0,.6),
-inset 0 2px 4px rgba(255,255,255,.05);
-text-align:center;
-position:relative;
-overflow:hidden;
+.section-title {
+  font-size: clamp(10px, 2.8vw, 12px);
+  letter-spacing: 3px;
+  color: var(--gold-dark);
+  margin-bottom: 14px;
 }
 
-.flip-box span{
-display:block;
-font-size:clamp(20px,5vw,32px);
-font-weight:bold;
-color:#d4af37;
-letter-spacing:2px;
+.flip-clock {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
 }
 
-.flip-box small{
-font-size:clamp(9px,2.5vw,12px);
-color:#ccc;
-letter-spacing:1px;
+.flip-box {
+  background: linear-gradient(160deg, #1c1c1c, #000);
+  border-radius: 10px;
+  padding: 13px 4px 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
 }
 
-.flip-box::after{
-content:'';
-position:absolute;
-left:0;
-top:50%;
-width:100%;
-height:1px;
-background:rgba(255,255,255,0.1);
+.flip-box::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  width: 100%; height: 1px;
+  background: rgba(255,255,255,0.07);
 }
 
-/* EVENTS */
-
-.event{
-margin-top:25px;
-padding:18px;
-border:1px solid #d4af37;
-border-radius:12x;
-background:#fff9e6;
+.flip-box span {
+  display: block;
+  font-size: clamp(20px, 5.5vw, 32px);
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  transition: transform 0.15s ease;
 }
 
-.btn{
-margin-top:15px;
-padding:12px 26px;
-border:none;
-background:#b8962e;
-color:white;
-cursor:pointer;
-border-radius:30px;
-font-weight:bold;
-width:100%;
+.flip-box small {
+  display: block;
+  font-size: clamp(7px, 1.8vw, 10px);
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-top: 4px;
 }
 
-/* MUSIC BUTTON */
-
-.music{
-position:fixed;
-bottom:15px;
-right:15px;
-background:gold;
-border:none;
-padding:12px;
-border-radius:50%;
-cursor:pointer;
-font-size:18px;
+/* ─── EVENT CARDS ─── */
+.event-card {
+  margin-top: 16px;
+  padding: 18px 16px;
+  border: 1px solid rgba(201,168,76,0.45);
+  border-radius: 12px;
+  background: rgba(255, 252, 238, 0.65);
+  backdrop-filter: blur(6px);
+  text-align: center;
 }
 
+.event-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.event-icon { font-size: 20px; flex-shrink: 0; }
+
+.event-title {
+  font-size: clamp(12px, 3.2vw, 14px);
+  letter-spacing: 2.5px;
+  color: var(--text-dark);
+}
+
+.event-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 4.5vw, 22px);
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin-bottom: 6px;
+}
+
+.event-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 3.5vw, 16px);
+  font-weight: 600;
+  color: var(--gold-dark);
+  margin-bottom: 5px;
+}
+
+.event-venue {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: #3d2c12;
+  line-height: 1.55;
+}
+
+.map-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 13px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(9px, 2.5vw, 11px);
+  letter-spacing: 2px;
+  color: #fff;
+  background: linear-gradient(135deg, #b8962e, #7a5a1e);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  -webkit-appearance: none;
+  transition: opacity 0.2s;
+}
+.map-btn:active { opacity: 0.8; }
+
+/* ─── FOOTER ─── */
+.parchment-footer {
+  margin-top: 26px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(12px, 3vw, 14px);
+  color: #7a5c30;
+  opacity: 0.85;
+}
+
+/* ─── MUSIC ─── */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #e8c96a, #c9a84c);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  z-index: 100;
+  -webkit-appearance: none;
+  transition: transform 0.2s;
+}
+.music-btn:active { transform: scale(0.9); }
+
+@media (max-width: 360px) {
+  .parchment-content { padding: 38px 14px 44px; }
+  .flip-clock { gap: 5px; }
+}
 </style>
 </head>
-
 <body>
 
-<div class="hero"></div>
+<div id="particles"></div>
 
-<button class="open-btn" onclick="openScroll()">
-Open Invitation
-</button>
+<!-- ─── LANDING ─── -->
+<section id="landing">
+  <div class="landing-content">
+    <div class="landing-names">
+      Abiya Roy
+      <span class="landing-amp">&amp;</span>
+      Jomal Mathew
+    </div>
+    <div class="landing-divider"></div>
+    <p class="landing-date">04th &amp; 11th JULY 2026 · KERALA</p>
+    <button class="open-btn" onclick="openInvitation()">Open Invitation</button>
+  </div>
 
-<div class="scroll" id="scroll">
+  <div class="scroll-hint" id="scrollHint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
-<h3>You Are Invited</h3>
+<!-- ─── INVITATION ─── -->
+<section id="invitation">
+  <div class="parchment" id="parchment">
+    <div class="rod rod-top"></div>
 
-<div class="names">
-Jomal Mathew <br> & <br> Abiya Roy
-</div>
+    <div class="parchment-inner">
+      <div class="parchment-content">
 
-<div class="details">
-Together with their families,<br>
-invite you to celebrate their joyous occasions.
-</div>
+        <div class="couple-names">
+          Abiya Roy
+          <span class="couple-amp">&amp;</span>
+          Jomal Mathew
+        </div>
 
-<!-- LUXURY COUNTDOWN -->
+        <div class="pdivider"></div>
 
-<div class="countdown">
-<h3>⏳ Wedding Countdown</h3>
-<div class="flip-clock">
-<div class="flip-box"><span id="days">00</span><small>Days</small></div>
-<div class="flip-box"><span id="hours">00</span><small>Hours</small></div>
-<div class="flip-box"><span id="minutes">00</span><small>Minutes</small></div>
-<div class="flip-box"><span id="seconds">00</span><small>Seconds</small></div>
-</div>
-</div>
+        <p class="tagline">
+          Together with their families,<br>
+          invite you to celebrate<br>their joyous occasions.
+        </p>
 
-<!-- ENGAGEMENT -->
+        <!-- COUNTDOWN -->
+        <div class="countdown-wrap">
+          <p class="section-title">⏳ WEDDING COUNTDOWN</p>
+          <div class="flip-clock">
+            <div class="flip-box"><span id="days">00</span><small>DAYS</small></div>
+            <div class="flip-box"><span id="hours">00</span><small>HRS</small></div>
+            <div class="flip-box"><span id="minutes">00</span><small>MINS</small></div>
+            <div class="flip-box"><span id="seconds">00</span><small>SECS</small></div>
+          </div>
+        </div>
 
-<div class="event">
-<h3>💍 Engagement</h3>
-<strong>4th July 2026</strong><br>
-<span style="display:block;margin-top:8px;font-weight:bold;color:#b8962e;">
-🕊 11:30 AM
-</span>
-<span style="display:block;margin-top:6px;">
-📍 St. Joseph's Forane Pilgrim Church, Panathady
-</span>
-<button class="btn"
-onclick="window.open('https://maps.app.goo.gl/JERJCMjhzShqsAid9','_blank')">
-View Location
-</button>
-</div>
+        <!-- ENGAGEMENT -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-icon">💍</span>
+            <span class="event-title">ENGAGEMENT</span>
+          </div>
+          <div class="event-date">4th July 2026</div>
+          <div class="event-time">🕊 11:30 AM</div>
+          <div class="event-venue">📍 St. Joseph's Forane Pilgrim Church, Panathady</div>
+          <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/JERJCMjhzShqsAid9','_blank')">
+            📍 View Location on Map
+          </button>
+        </div>
 
-<!-- WEDDING -->
+        <!-- WEDDING -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-icon">👑</span>
+            <span class="event-title">WEDDING</span>
+          </div>
+          <div class="event-date">11th July 2026</div>
+          <div class="event-time">⛪ 11:00 AM</div>
+          <div class="event-venue">📍 Little Flower Church, Kuttaparamba</div>
+          <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/AnFbi2aHdYn2uy8G8','_blank')">
+            📍 View Location on Map
+          </button>
+        </div>
 
-<div class="event">
-<h3>👑 Wedding</h3>
-<strong>11th July 2026</strong><br>
-<span style="display:block;margin-top:8px;font-weight:bold;color:#b8962e;">
-⛪ 11:00 AM
-</span>
-<span style="display:block;margin-top:6px;">
-📍 Little Flower Church, Kuttaparamba
-</span>
-<button class="btn"
-onclick="window.open('https://maps.app.goo.gl/AnFbi2aHdYn2uy8G8','_blank')">
-View Location
-</button>
-</div>
+        <div class="pdivider" style="margin-top:26px;"></div>
+        <p class="parchment-footer">With love &amp; joy ❤️</p>
 
-</div>
+      </div>
+    </div>
 
-<audio id="music" autoplay loop>
-<source src="https://res.cloudinary.com/drgmm8ig7/video/upload/v1771692901/WhatsApp_Audio_2026-02-21_at_9.21.50_PM_ko8gpl.mp3" type="audio/mp4">
+    <div class="rod rod-bottom"></div>
+  </div>
+</section>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+  <source src="https://res.cloudinary.com/drgmm8ig7/video/upload/v1771692901/WhatsApp_Audio_2026-02-21_at_9.21.50_PM_ko8gpl.mp3" type="audio/mp4">
 </audio>
 
-<button class="music" onclick="toggleMusic()">🎵</button>
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
 <script>
+// ─── PARTICLES ───
+(function(){
+  const container = document.getElementById('particles');
+  for(let i = 0; i < 45; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    Object.assign(p.style, {
+      width: size + 'px',
+      height: size + 'px',
+      left: (Math.random() * 100) + 'vw',
+      animationDuration: (7 + Math.random() * 10) + 's',
+      animationDelay: (Math.random() * 8) + 's'
+    });
+    container.appendChild(p);
+  }
+})();
 
-/* PARTICLES */
-for(let i=0;i<50;i++){
-let p=document.createElement("div");
-p.className="particle";
-let size=Math.random()*7+2;
-p.style.width=size+"px";
-p.style.height=size+"px";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(6+Math.random()*10)+"s";
-document.body.appendChild(p);
+// ─── OPEN INVITATION ───
+let opened = false;
+function openInvitation(){
+  if(opened) return;
+  opened = true;
+
+  document.getElementById('scrollHint').classList.add('visible');
+
+  setTimeout(()=>{
+    document.getElementById('invitation').scrollIntoView({ behavior: 'smooth' });
+  }, 150);
+
+  setTimeout(()=>{
+    document.getElementById('parchment').classList.add('revealed');
+  }, 500);
+
+  document.getElementById('music').play().catch(()=>{});
 }
 
-/* FLIP COUNTDOWN */
+// ─── COUNTDOWN ───
 const weddingDate = new Date("July 11, 2026 11:00:00").getTime();
+function pad(n){ return String(n).padStart(2, '0'); }
 
 function updateCountdown(){
-
-const now = new Date().getTime();
-const distance = weddingDate - now;
-
-const days = Math.floor(distance / (1000*60*60*24));
-const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-const seconds = Math.floor((distance % (1000*60)) / 1000);
-
-animateFlip("days", days);
-animateFlip("hours", hours);
-animateFlip("minutes", minutes);
-animateFlip("seconds", seconds);
+  const dist = weddingDate - Date.now();
+  if(dist < 0) return;
+  flip('days',    Math.floor(dist / 86400000));
+  flip('hours',   Math.floor((dist % 86400000) / 3600000));
+  flip('minutes', Math.floor((dist % 3600000)  / 60000));
+  flip('seconds', Math.floor((dist % 60000)    / 1000));
 }
 
-function animateFlip(id, value){
-const el = document.getElementById(id);
-const newValue = String(value).padStart(2,'0');
-
-if(el.innerText !== newValue){
-el.style.transform = "rotateX(90deg)";
-setTimeout(()=>{
-el.innerText = newValue;
-el.style.transform = "rotateX(0deg)";
-},150);
-}
+function flip(id, val){
+  const el = document.getElementById(id);
+  const v = pad(val);
+  if(el.textContent !== v){
+    el.style.transform = 'rotateX(90deg)';
+    setTimeout(()=>{ el.textContent = v; el.style.transform = 'rotateX(0)'; }, 150);
+  }
 }
 
-setInterval(updateCountdown,1000);
+setInterval(updateCountdown, 1000);
 updateCountdown();
 
-/* OPEN SCROLL */
-function openScroll(){
-document.getElementById("scroll").classList.add("show-scroll");
-window.scrollTo({ top:window.innerHeight, behavior:'smooth' });
-document.getElementById("music").play();
-}
-
-/* TOGGLE MUSIC */
+// ─── MUSIC ───
 function toggleMusic(){
-let m=document.getElementById("music");
-if(m.paused) m.play();
-else m.pause();
+  const m = document.getElementById('music');
+  const btn = document.getElementById('musicBtn');
+  if(m.paused){ m.play(); btn.textContent = '🔊'; }
+  else         { m.pause(); btn.textContent = '🎵'; }
 }
-
 </script>
-
 </body>
 </html>
