@@ -8,8 +8,7 @@
 
 <style>
 *, *::before, *::after {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
@@ -24,7 +23,6 @@
 
 html { scroll-behavior: smooth; }
 
-/* Hero image lives on a fixed pseudo-element behind everything */
 body {
   font-family: 'Cinzel', serif;
   overflow-x: hidden;
@@ -32,18 +30,14 @@ body {
   position: relative;
 }
 
-/* Fixed full-page background — always visible */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693093/WhatsApp_Image_2026-02-21_at_8.38.32_PM_krojbi.jpg')
-    center center / cover no-repeat;
+  background: url('https://res.cloudinary.com/drgmm8ig7/image/upload/v1771693093/WhatsApp_Image_2026-02-21_at_8.38.32_PM_krojbi.jpg') center center / cover no-repeat;
   z-index: -2;
 }
 
-/* Dark overlay on top of bg — always visible */
 body::after {
   content: '';
   position: fixed;
@@ -168,7 +162,7 @@ body::after {
   100% { transform: translateY(-10vh) scale(0.4); opacity: 0; }
 }
 
-/* ─── INVITATION SECTION — transparent so bg shows through ─── */
+/* ─── INVITATION SECTION ─── */
 #invitation {
   position: relative;
   width: 100%;
@@ -180,7 +174,6 @@ body::after {
   background: transparent;
 }
 
-/* Parchment card */
 .parchment {
   position: relative;
   width: 100%;
@@ -189,10 +182,7 @@ body::after {
   transform: translateY(60px);
   transition: opacity 0.9s ease, transform 0.9s ease;
 }
-.parchment.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+.parchment.revealed { opacity: 1; transform: translateY(0); }
 
 .parchment-inner {
   position: relative;
@@ -217,7 +207,6 @@ body::after {
   text-align: center;
 }
 
-/* Scroll rods */
 .rod {
   position: absolute;
   left: -4%;
@@ -257,13 +246,18 @@ body::after {
   margin: 2px 0;
 }
 
+/* Bold + uppercase tagline */
 .tagline {
   font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(13px, 3.5vw, 16px);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
   color: #3d2c12;
   line-height: 1.85;
   margin: 10px 0 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-variant-numeric: lining-nums;
 }
 
 /* ─── COUNTDOWN ─── */
@@ -276,11 +270,13 @@ body::after {
   backdrop-filter: blur(6px);
 }
 
+/* Bold section title */
 .section-title {
   font-size: clamp(10px, 2.8vw, 12px);
   letter-spacing: 3px;
   color: var(--gold-dark);
   margin-bottom: 14px;
+  font-weight: 700;
 }
 
 .flip-clock {
@@ -350,28 +346,35 @@ body::after {
   color: var(--text-dark);
 }
 
-.event-date {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(17px, 4.5vw, 22px);
-  font-weight: 600;
-  color: var(--gold-dark);
-  margin-bottom: 6px;
-}
-
-.event-time {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(13px, 3.5vw, 16px);
-  font-weight: 600;
-  color: var(--gold-dark);
-  margin-bottom: 5px;
-}
-
+/* Date, time & venue — all identical, same as tagline */
+.event-date,
+.event-time,
 .event-venue {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  color: #3d2c12 !important;
+  line-height: 1.85 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-variant-numeric: lining-nums !important;
+}
+.event-date { margin-bottom: 4px; }
+.event-time { margin-bottom: 6px; }
+.event-venue { margin-bottom: 2px; }
+
+/* Railway station — same style as parchment-footer */
+.event-station {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(13px, 3.5vw, 15px);
-  color: #3d2c12;
-  line-height: 1.55;
+  font-weight: 400;
+  font-size: clamp(13px, 3.2vw, 15px);
+  color: #5a3e18;
+  line-height: 1.6;
+  margin-top: 6px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .map-btn {
@@ -393,14 +396,18 @@ body::after {
 }
 .map-btn:active { opacity: 0.8; }
 
-/* ─── FOOTER ─── */
+/* Footer — white pill for visibility */
 .parchment-footer {
   margin-top: 26px;
+  padding: 10px 24px;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(12px, 3vw, 14px);
-  color: #7a5c30;
-  opacity: 0.85;
+  font-size: clamp(13px, 3.2vw, 15px);
+  color: #5a3e18;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 30px;
+  display: inline-block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 /* ─── MUSIC ─── */
@@ -444,7 +451,7 @@ body::after {
       Jomal Mathew
     </div>
     <div class="landing-divider"></div>
-    <p class="landing-date">04.07.2026 &amp; 11.07.2026 </p>
+    <p class="landing-date">04.07.2026 &amp; 11.07.2026</p>
     <button class="open-btn" onclick="openInvitation()">Open Invitation</button>
   </div>
 
@@ -471,8 +478,8 @@ body::after {
         <div class="pdivider"></div>
 
         <p class="tagline">
-          Together with their families,<br>
-          invite you to celebrate<br>their joyous occasions.
+          Together With Their Families,<br>
+          Invite You To Celebrate<br>Their Joyous Occasions.
         </p>
 
         <!-- COUNTDOWN -->
@@ -492,9 +499,10 @@ body::after {
             <span class="event-icon">💍</span>
             <span class="event-title">ENGAGEMENT</span>
           </div>
-          <div class="event-date">4th July 2026</div>
+          <div class="event-date">4TH JULY 2026</div>
           <div class="event-time">🕊 11:30 AM</div>
           <div class="event-venue">📍 St. Joseph's Forane Pilgrim Church, Panathady</div>
+          <div class="event-station">🚂 Nearest Railway Station — Kanhangad</div>
           <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/JERJCMjhzShqsAid9','_blank')">
             📍 View Location on Map
           </button>
@@ -506,9 +514,10 @@ body::after {
             <span class="event-icon">👑</span>
             <span class="event-title">WEDDING</span>
           </div>
-          <div class="event-date">11th July 2026</div>
+          <div class="event-date">11TH JULY 2026</div>
           <div class="event-time">⛪ 11:00 AM</div>
-          <div class="event-venue">📍 Little Flower Church, Kuttaparamba</div>
+          <div class="event-venue">📍 Little Flower Church, Kuttaparamba, Alakode</div>
+          <div class="event-station">🚂 Nearest Railway Station — Kannur</div>
           <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/AnFbi2aHdYn2uy8G8','_blank')">
             📍 View Location on Map
           </button>
@@ -532,7 +541,6 @@ body::after {
 <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
 <script>
-// ─── PARTICLES ───
 (function(){
   const container = document.getElementById('particles');
   for(let i = 0; i < 45; i++){
@@ -550,26 +558,16 @@ body::after {
   }
 })();
 
-// ─── OPEN INVITATION ───
 let opened = false;
 function openInvitation(){
   if(opened) return;
   opened = true;
-
   document.getElementById('scrollHint').classList.add('visible');
-
-  setTimeout(()=>{
-    document.getElementById('invitation').scrollIntoView({ behavior: 'smooth' });
-  }, 150);
-
-  setTimeout(()=>{
-    document.getElementById('parchment').classList.add('revealed');
-  }, 500);
-
+  setTimeout(()=>{ document.getElementById('invitation').scrollIntoView({ behavior: 'smooth' }); }, 150);
+  setTimeout(()=>{ document.getElementById('parchment').classList.add('revealed'); }, 500);
   document.getElementById('music').play().catch(()=>{});
 }
 
-// ─── COUNTDOWN ───
 const weddingDate = new Date("July 11, 2026 11:00:00").getTime();
 function pad(n){ return String(n).padStart(2, '0'); }
 
@@ -594,7 +592,6 @@ function flip(id, val){
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ─── MUSIC ───
 function toggleMusic(){
   const m = document.getElementById('music');
   const btn = document.getElementById('musicBtn');
@@ -604,5 +601,3 @@ function toggleMusic(){
 </script>
 </body>
 </html>
-
-
