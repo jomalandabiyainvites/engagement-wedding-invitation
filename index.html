@@ -46,6 +46,63 @@ body::after {
   z-index: -1;
 }
 
+/* ── GUEST GREETING BANNER ── */
+#guest-banner {
+  display: none;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-bottom: 18px;
+  animation: fadeInDown 0.9s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.guest-pill {
+  display: inline-block;
+  padding: 8px 26px 12px;
+  border: 1px solid rgba(201,168,76,0.55);
+  border-radius: 50px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.guest-dear {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(9px, 2.3vw, 11px);
+  letter-spacing: 4px;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.guest-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(24px, 7vw, 38px);
+  color: #fff;
+  display: block;
+  line-height: 1.1;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.guest-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(12px, 3vw, 14px);
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 5px;
+}
+/* ─────────────────────────── */
+
 /* ─── LANDING ─── */
 #landing {
   position: relative;
@@ -220,7 +277,6 @@ body::after {
 .rod-top    { top: -11px; }
 .rod-bottom { bottom: -11px; }
 
-/* ─── TYPOGRAPHY ─── */
 .pdivider {
   width: 60px;
   height: 1px;
@@ -246,7 +302,6 @@ body::after {
   margin: 2px 0;
 }
 
-/* Bold + uppercase tagline */
 .tagline {
   font-family: 'Cormorant Garamond', serif;
   font-style: normal;
@@ -260,7 +315,6 @@ body::after {
   font-variant-numeric: lining-nums;
 }
 
-/* ─── COUNTDOWN ─── */
 .countdown-wrap {
   margin: 18px 0;
   padding: 18px 12px;
@@ -270,7 +324,6 @@ body::after {
   backdrop-filter: blur(6px);
 }
 
-/* Bold section title */
 .section-title {
   font-size: clamp(10px, 2.8vw, 12px);
   letter-spacing: 3px;
@@ -319,7 +372,6 @@ body::after {
   margin-top: 4px;
 }
 
-/* ─── EVENT CARDS ─── */
 .event-card {
   margin-top: 16px;
   padding: 18px 16px;
@@ -346,7 +398,6 @@ body::after {
   color: var(--text-dark);
 }
 
-/* Date, time & venue — all identical, same as tagline */
 .event-date,
 .event-time,
 .event-venue {
@@ -364,7 +415,6 @@ body::after {
 .event-time { margin-bottom: 6px; }
 .event-venue { margin-bottom: 2px; }
 
-/* Railway station — same style as parchment-footer */
 .event-station {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
@@ -396,7 +446,6 @@ body::after {
 }
 .map-btn:active { opacity: 0.8; }
 
-/* Footer — white pill for visibility */
 .parchment-footer {
   margin-top: 26px;
   padding: 10px 24px;
@@ -410,7 +459,6 @@ body::after {
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
-/* ─── MUSIC ─── */
 .music-btn {
   position: fixed;
   bottom: 20px;
@@ -445,6 +493,18 @@ body::after {
 <!-- ─── LANDING ─── -->
 <section id="landing">
   <div class="landing-content">
+
+    <!-- Guest greeting banner — shown only when ?guest= is in the URL -->
+    <div id="guest-banner">
+      <div class="guest-pill">
+        <span class="guest-dear">DEAR</span>
+        <span class="guest-name" id="guest-name-display"></span>
+        <span class="guest-subtitle">You are cordially invited to the<br>Engagement &amp; Marriage of Abiya and Jomal</span>
+      </div>
+    </div>
+
+    <div class="landing-divider" style="margin-top:18px;"></div>
+
     <div class="landing-names">
       Abiya Roy
       <span class="landing-amp">&amp;</span>
@@ -533,7 +593,6 @@ body::after {
   </div>
 </section>
 
-<!-- AUDIO -->
 <audio id="music" loop>
   <source src="https://res.cloudinary.com/drgmm8ig7/video/upload/v1771692901/WhatsApp_Audio_2026-02-21_at_9.21.50_PM_ko8gpl.mp3" type="audio/mp4">
 </audio>
@@ -541,6 +600,18 @@ body::after {
 <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
 <script>
+// ── READ GUEST NAME FROM URL ──────────────────────────────────────
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const guest  = params.get('guest');
+  if(guest && guest.trim()){
+    const name = decodeURIComponent(guest.trim());
+    document.getElementById('guest-name-display').textContent = name;
+    document.getElementById('guest-banner').style.display = 'block';
+  }
+})();
+
+// ── PARTICLES ────────────────────────────────────────────────────
 (function(){
   const container = document.getElementById('particles');
   for(let i = 0; i < 45; i++){
@@ -558,6 +629,7 @@ body::after {
   }
 })();
 
+// ── OPEN INVITATION ───────────────────────────────────────────────
 let opened = false;
 function openInvitation(){
   if(opened) return;
@@ -568,6 +640,7 @@ function openInvitation(){
   document.getElementById('music').play().catch(()=>{});
 }
 
+// ── COUNTDOWN ─────────────────────────────────────────────────────
 const weddingDate = new Date("July 11, 2026 11:00:00").getTime();
 function pad(n){ return String(n).padStart(2, '0'); }
 
@@ -592,8 +665,9 @@ function flip(id, val){
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+// ── MUSIC TOGGLE ──────────────────────────────────────────────────
 function toggleMusic(){
-  const m = document.getElementById('music');
+  const m   = document.getElementById('music');
   const btn = document.getElementById('musicBtn');
   if(m.paused){ m.play(); btn.textContent = '🔊'; }
   else         { m.pause(); btn.textContent = '🎵'; }
